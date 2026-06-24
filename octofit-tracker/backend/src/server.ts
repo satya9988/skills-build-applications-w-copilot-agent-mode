@@ -31,11 +31,11 @@ app.use(express.json());
 const LOCAL_FRONTEND = 'http://localhost:5173';
 const CODESPACE_NAME = process.env.CODESPACE_NAME;
 const API_URL = CODESPACE_NAME
-  ? `https://${CODESPACE_NAME}-${PORT}.githubpreview.dev`
-  : `http://localhost:${PORT}`;
+  ? `https://${CODESPACE_NAME}-8000.app.github.dev`
+  : `http://localhost:8000`;
 
 const corsOptions = {
-  origin: [LOCAL_FRONTEND, API_URL],
+  origin: [LOCAL_FRONTEND, API_URL, 'http://localhost:5173'],
 };
 
 app.use(simpleCors(corsOptions));
