@@ -4,18 +4,19 @@
  * Seed the octofit_db database with test data
  */
 import mongoose from 'mongoose';
+import { MONGO_URL } from '../database';
 import User from '../models/user';
 import Team from '../models/team';
 import Activity from '../models/activity';
 import Workout from '../models/workout';
 import Leaderboard from '../models/leaderboard';
 
-const MONGO_URL = process.env.MONGO_URL || 'mongodb://localhost:27017/octofit_db';
+// use MONGO_URL from database.ts
 
 async function seed() {
   console.log('Seed the octofit_db database with test data');
   await mongoose.connect(MONGO_URL);
-  await mongoose.connection.db.dropDatabase();
+  await mongoose.connection.db!.dropDatabase();
 
   // Activities
   const running = await Activity.create({ name: 'Running', type: 'cardio', caloriesPerHour: 600 });

@@ -1,5 +1,5 @@
 import express from 'express';
-import mongoose from 'mongoose';
+import connectDatabase, { MONGO_URL } from './database';
 // Simple CORS middleware (avoid external dependency resolution issues)
 function simpleCors(options: { origin?: string[] }) {
   const allowed = options.origin || [];
@@ -23,7 +23,6 @@ import activitiesRouter from './routes/activities';
 import leaderboardRouter from './routes/leaderboard';
 import workoutsRouter from './routes/workouts';
 
-const MONGO_URL = process.env.MONGO_URL || 'mongodb://localhost:27017/octofit_db';
 const PORT = Number(process.env.PORT || 8000);
 
 const app = express();
@@ -54,8 +53,7 @@ app.use('/api/workouts', workoutsRouter);
 
 async function start() {
   try {
-    await mongoose.connect(MONGO_URL);
-    console.log('Connected to MongoDB at', MONGO_URL);
+    await connectDatabase();
     console.log('API URL:', API_URL);
     app.listen(PORT, '0.0.0.0', () => {
       console.log(`Server listening on http://localhost:${PORT}`);
