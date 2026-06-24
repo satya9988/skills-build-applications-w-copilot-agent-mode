@@ -5,6 +5,8 @@ function Teams() {
   const [teams, setTeams] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+  // Codespace API endpoint: https://{CODESPACE_NAME}-8000.app.github.dev/api/teams
+  const codespaceUrl = `https://${process.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/teams`
 
   useEffect(() => {
     const fetchTeams = async () => {

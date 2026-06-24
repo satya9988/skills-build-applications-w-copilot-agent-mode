@@ -5,6 +5,8 @@ function Activities() {
   const [activities, setActivities] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+  // Codespace API endpoint: https://{CODESPACE_NAME}-8000.app.github.dev/api/activities
+  const codespaceUrl = `https://${process.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/activities`
 
   useEffect(() => {
     const fetchActivities = async () => {

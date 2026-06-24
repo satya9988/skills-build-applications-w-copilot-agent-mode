@@ -5,6 +5,8 @@ function Users() {
   const [users, setUsers] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+  // Codespace API endpoint: https://{CODESPACE_NAME}-8000.app.github.dev/api/users
+  const codespaceUrl = `https://${process.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/users`
 
   useEffect(() => {
     const fetchUsers = async () => {
